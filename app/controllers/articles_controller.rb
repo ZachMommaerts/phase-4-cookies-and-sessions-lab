@@ -10,9 +10,11 @@ class ArticlesController < ApplicationController
     session[:view] ||= 0
     session[:view] += 1
 
-    if session[:view] < 4
+    if session[:view] <= 3
       article = Article.find(params[:id])
       render json: article
+    else
+      render json: { error: 'Maximum articles viewed'}, status: 401
     end
   end
 
