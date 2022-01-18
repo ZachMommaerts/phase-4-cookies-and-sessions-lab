@@ -10,9 +10,10 @@ class ArticlesController < ApplicationController
     session[:view] ||= 0
     session[:view] += 1
 
-    if 
-    article = Article.find(params[:id])
-    render json: article
+    if session[:view] < 4
+      article = Article.find(params[:id])
+      render json: article
+    end
   end
 
   private
